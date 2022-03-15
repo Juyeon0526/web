@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <title>We Love LOL</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/lightgallery.css">
+    <link rel="stylesheet" href="css/custom.css">
+      <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+
+    <style>
+        /* 레이아웃 */
+        body {background: url(img/league_of_legends_bg.jpg) repeat-x center top;}
+        #header {  }
+        #nav {background-color: #f6fdff;}
+        #title {background-color: #eaf7fd;}
+        #contents .container {border-right: 1px solid #dbdbdb; border-left: 1px solid #dbdbdb;}
+        #cont_left {float: left; width: 250px;}
+        #cont_center {
+            overflow: hidden; 
+            margin-right: 250px; 
+            min-height: 1300px; 
+            border-right: 1px solid #dbdbdb;
+            border-left: 1px solid #dbdbdb;
+        }
+        #cont_right {position: absolute; right: 0; top: 0px; width: 250px;}
+        #footer {border-top: 1px solid #dbdbdb;}    
+        
+        
+        /* mediaquery */
+        /* 화면 너비 0~1220px */
+        @media (max-width: 1220px){
+            .container {width: 100%;}
+            .row {padding: 0 15px;}
+            #cont_center {min-height: 1350px;}
+	        #contents .container {border: 0;}
+            
+            .title .btn {right: 15px;}
+            .square a {width: 24%}
+	        .square a:nth-child(5n) {display: none;}
+        }
+        
+        /* 화면 너비 0~1024px */
+        @media (max-width: 1024px){
+            .square a {width: 32.33333%}
+	        .square a:nth-child(5) {display: block;}
+        }
+        
+        /* 화면 너비 0~960px */
+        @media (max-width: 960px){
+            #cont_right {position: static; width: 100%; border-top: 1px solid #dbdbdb;}
+	        #cont_center {margin-right: 0; border-right: 0;}
+            
+            .nav > div {float: none; width: 100%;}
+            .nav > div:last-child {width: 100%;}
+            .nav > div li {width: 33.333%;}
+            .nav > div:last-child li {width: 33.333%;}
+            .nav > div ol {margin-bottom: 10px;}
+            
+            #cont_right {overflow: hidden;}
+            #cont_right .column {float: left; width: 33.333%; box-sizing: border-box;}
+            #cont_right .column.col7 {border-right: 1px solid #dbdbdb; border-bottom: 0;}
+            #cont_right .column.col8 {border-right: 1px solid #dbdbdb; border-bottom: 0;}
+        }
+        
+        /* 화면 너비 0~768px */
+        @media (max-width: 768px){
+            #cont_left {float: none; width: 100%;}
+	        #cont_center {border-left: 0;}
+        }
+        
+        /* 화면 너비 0~600px */
+        @media (max-width: 600px){
+            .header {height: auto;}
+            .nav > div li {width: 50%;}
+	        .nav > div:last-child li {width: 50%;}
+            
+            .header .header_tit {display: none;}
+            .header .header_icon {display: none;}
+            .title .btn {display: none;}
+            .column.col1 .col_tit {display: none;}
+            .column.col1 .col_desc {display: none;}
+            .column.col1 .menu li a i {display: none;}
+            .column.col1 {padding: 0; border-bottom: 0;}
+            .column.col1 .menu ul {overflow: hidden;}
+            .column.col1 .menu li {float: left; width: 33.33333%; text-align: center; border-right: 1px solid #dbdbdb; box-sizing: border-box;}
+            .column.col1 .menu li:nth-child(3n) {border-right: 0;}
+            .column.col1 .menu li a {color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.7);}
+            .column.col1 .menu li a:hover {box-shadow: none; background: rgba(36,130,174,0.3);}
+            .column.col2 {background: #fff;}
+	        .column.col4 {border-top: 1px solid #dbdbdb;}
+            
+            #cont_right .column {width:50%;}
+            #cont_right .column.col8 {border-right: 0;}
+            #cont_right .column.col9 {display: none;}
+            
+            .slider figcaption {padding: 10px;}
+            .slider figcaption em {font-size: 18px;}
+            .slider figcaption span {font-size: 14px;}
+            
+            .square a {width: 49%}
+	        .square a:nth-child(5) {display: none;}
+        }
+        
+        /* 화면 너비 0~480px */
+        @media (max-width: 480px){
+
+        }
+
+        /* 화면 너비 0~320px */
+        @media (max-width: 320px){
+            #cont_right .column {width:100%;}
+	        #cont_right .column.col7 {border-right: 0; border-bottom: 1px solid #dbdbdb;}
+            .square a {width: 100%; margin-left:0; margin-right: 0;}
+        }
+        
+        /* 줌 에니메이션 추가 */
+        .animate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+        }
+  
+        @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+        }
+
+        /* 작은 화면에서의 범위와 취소 버튼 스타일 변경 */
+        @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+          }
+          .cancelbtn {
+             width: 100%;
+          }
+        }
+        .zed{
+            width: 150px;
+            height: 150px;
+        }
+        .myhome {
+            font-size: 14px;
+            width: 110px;
+            font-weight: bold;
+            text-align: right;
+            margin-right: 10px;
+        }
+        .column col4 ul li {
+            list-style: none;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+        .zed {
+            width: 140px;
+            height: 140px;
+        }
+        fieldset{
+            width: 141px;
+            height: 141px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header">
+                    <div class="header_menu">
+                      <a class="login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><strong>Login</strong></a>
+                       <div id="id01" class="modal1">
+                         <form class="modal1-content animate" action="" method="post">
+                               <div class="container1">
+                               <label for="uname"><b>Username</b></label>
+                                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" required>
+        
+                                <label>
+                                <input type="checkbox" checked="checked" name="remember">Remember me
+                                </label>
+                               </div>
+
+                               <div class="container1" style="background-color:#f1f1f1">
+                                <button class="loginbtn" type="submit">Login</button>
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                               </div>
+                         </form>
+                        </div>
+                        <a href="https://www.youtube.com/user/riotgamesinc">Youtube</a>
+                        <a href="https://www.facebook.com/LeagueofLegendsKor">facebook</a>
+                        <a href="https://kr.leagueoflegends.com/ko-kr/">Website</a>
+                    </div>
+                    <!-- //header_menu -->
+                    <div class="header_tit">
+                        <h1>League of Legend</h1><br>
+                        <a href="index.html">We Love LOL</a>
+                    </div>
+                    <!-- //header_tit -->
+                    <div class="header_icon">
+                        <ul>
+                            <li><a href="#" id="myBtn"><i class="fa fa-star" aria-hidden="true"></i><span>bookmark</span></a></li>
+                            <div id="myModal" class="modal">
+                            <!-- Modal content -->
+                              <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>우측 상단 별표시를 눌러 북마크를 설정하세요!</p>
+                              </div>
+
+                            </div>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i><span>Fackbook</span></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>twitter</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- //header_icon -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //nav -->
+    
+    <nav id="nav">
+		<div class="container">
+			<div class="row">
+				<div class="nav">
+					<h2 class="ir_su">전체 메뉴</h2>
+					<div>
+			            <h3>사이트 메뉴</h3>
+			            <ol>
+			                <li><a href="index2.html#scroll1">내정보</a></li>
+			                <li><a href="index2.html#scroll2">컬랙션</a></li>
+			                <li><a href="index2.html#scroll3">제작소</a></li>
+			                <li><a href="index2.html#scroll4">나만의 상점</a></li>
+			                <li><a href="index2.html#scroll5">201935285 송지우</a></li>
+			                <li><a href="index2.html#scroll6">201935365 홍주연</a></li>
+			                <li><a href="index3.html#scroll1">사이트 도움말</a></li>
+			                <li><a href="index3.html#scroll2">사이트 이용약관</a></li>
+			                <li><a href="index3.html#scroll3">사이트 운영원칙</a></li>
+			                <li><a href="index3.html#scroll4">개인정보 취급방침</a></li>
+			                <li><a href="index3.html#scroll5">책임의 한계와 법적 고지</a></li>
+			                <li><a href="index3.html#scroll6">개시중단요청서비스</a></li>
+			                <li><a href="index3.html#scroll7">고객센터</a></li>
+			            </ol>
+			        </div>
+			        <div>
+			            <h3>커뮤니티 사이트</h3>
+			            <ol>
+			                <li><a href="https://trees.gamemeca.com/leagueoflegends/">게임메카 접속</a></li>
+			                <li><a href="https://www.thisisgame.com/lol/">디즈이즈게임 접속</a></li>
+			                <li><a href="http://lol.inven.co.kr/">인벤 접속</a></li>
+			                <li><a href="http://www.hungryapp.co.kr/bbs/list.php?bcode=leagueoflegends">헝그리앱 접속</a></li>
+			                <li><a href="https://www.facebook.com/LeagueofLegendsKor">공식 페이스북 사이트 접속</a></li>
+			                <li><a href="https://www.youtube.com/user/riotgamesinc">공식 유튜브 채널 접속</a></li>
+			                <li><a href="https://kr.leagueoflegends.com/ko-kr/">공식 사이트 접속</a></li>			                
+			            </ol>
+			        </div>
+			        <div>
+			            <h3>전적 검색 사이트</h3>
+			            <ol>
+			                <li><a href="https://www.op.gg/">OP.GG 접속</a></li>
+			                <li><a href="http://fow.kr/">Fow.kr 접속</a></li>
+			                <li><a href="https://poro.gg/">PORO.GG 접속</a></li>
+			                <li><a href="https://lolchess.gg/">롤체.GG 접속</a></li>
+			            </ol>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- //nav -->
+   
+    <article id="title">
+		<div class="container">
+			<div class="title">
+				<h2>"League of Legends"</h2>
+				<a href="#" class="btn"><i class="fa fa-angle-down" aria-hidden="true"></i><span class="ir_su">전체메뉴 보기</span></a>
+			</div>
+		</div>
+	</article>
+	<!-- //title -->
+   
+    <main>
+        <section id="contents">
+            <div class="container">
+				<h2 class="ir_su">반응형 사이트 컨텐츠</h2>
+                <section id="cont_left">
+                    <h3 class="ir_su">메뉴 및 게시판 컨텐츠 영역</h3>
+                    <article class="column col1">
+                        <h4 class="col_tit">메뉴</h4>
+						<!-- 메뉴 -->
+						<div class="menu">
+							<ul>
+								<li><a href="./index2.html#scroll1">내정보 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll2">컬랙션 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll3">제작소 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll4">나만의 상점 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll5">201935285 송지우 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll6">201935300 홍주연 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						<!--//메뉴 -->
+                    </article>
+                    <!-- //col1 -->
+                    
+                    <article class="column col2">
+						<h4 class="col_tit">새소식</h4>
+						<!-- 게시판 -->
+						<div class="notice1">
+							<h5>개발자 블로그</h5>
+							<ul>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/champion-roadmap-june-2020/">2020년 6월 챔피언 업데이트 현황</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/dev-updates-on-2020-ranked-matchmaking/">[개발 인사이드] 2020 랭크 게임 및 대전 검색에 대한 소식</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/quick-gameplay-thoughts-may-29/">2020년 5월 게임플레이에 대한 단상 -4</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/tft-dev-drop-galaxies-mid-set-update/">전략적 팀 전투 개발 소식: 갤럭시 세트 중반 업데이트</a></li>
+							</ul>
+						</div>
+						<!--//게시판 -->
+						<!-- 게시판2 -->
+						<div class="notice2 mt15">
+							<h5>게임 업데이트</h5>
+							<ul>
+								<li><a href="https://www.youtube.com/watch?v=mbd2eN94caw">전략적 팀 전투 갤럭시 세트 중반 안내</a></li>
+								<li><a href="https://www.youtube.com/watch?v=vHMdPEHFEtM">전략적 팀 전투: 갤럭시 세트 중반 업데이트 티저</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/game-updates/10-11-store/">10.11 패치 상점 소식</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/game-updates/patch-10-11-notes/">[#2] 10.11 패치노트 (수정)</a></li>
+							</ul>
+						</div>
+						<!--//게시판2 -->
+					</article>
+					<!-- //col2 -->
+                    
+                    <article class="column col3">
+                        <h4 class="col_tit">블로그</h4>
+						<p class="col_desc">이미지를 클릭해 공략법을 알아보세요!</p>
+						<!-- side3 -->
+						<div class="side3">
+                            <figure>
+                                <img src="img/lucian.jpg" alt="이미지3">
+                                <a href="https://blog.naver.com/poalqr04/221318635739"><figcaption>
+                                    <h3>How to<em>Play LOL</em></h3>
+                                </figcaption></a>
+                            </figure>
+                        </div>
+                        <!-- side3//-->
+                    </article>
+					<!-- //col3 -->
+                </section>
+                <!-- //cont_left -->
+                
+                <section id="cont_center">
+                    <article class="column col4" id="scroll1">
+                        <h4 class="col_tit">내정보</h4>
+						<div class="leftname">
+						    <fieldset><img src="img/zed.png" alt="" class="zed"></fieldset>
+						</div>
+                        <div class="rightname">
+                           <ul>
+                                <li><label class="myhome" for="gamename">성명</label>
+                                <p>홍길동</p></li>
+                            </ul>
+                            <ul>
+                                <li><label class="myhome" for="gameID">ID</label>
+                                <p>honghonghong1988</p></li>
+                            </ul>
+                            <ul>
+                                <li><label class="myhome" for="gamenickname">닉네임</label>
+                                <p>아버지를 아버지라 부르지 못하고</p></li>
+                            </ul>  
+                            <ul>
+                                <li><label class="myhome" for="gamenickname">이메일</label>
+                                <p>hong1988@naver.com</p></li>
+                            </ul>  
+                        </div>  						
+					</article>
+               <article class="column col5" id="scroll2">
+                        <h4 class="col_tit">컬랙션</h4>
+						<p class="col_desc">현재 귀하가 가지고 있는 캐릭터(챔피언) 목록입니다.</p>
+						<div class="lightbox square clearfix">
+							<a href=""><img src="img/gangplank.png" alt=""><em>갱플랭크</em></a>
+							<a href=""><img src="img/graves.png" alt=""><em>그레이브즈</em></a>
+							<a href=""><img src="img/neeko.png" alt=""><em>니코</em></a>
+							<a href=""><img src="img/darius.png" alt=""><em>다리우스</em></a>
+							<a href=""><img src="img/lux.png" alt=""><em>럭스</em></a>
+							<a href=""><img src="img/rumble.png" alt=""><em>럼블</em></a>
+							<a href=""><img src="img/leona.png" alt=""><em>레오나</em></a>
+							<a href=""><img src="img/lucian.png" alt=""><em>루시안</em></a>
+							<a href=""><img src="img/lulu.png" alt=""><em>룰루</em></a>
+							<a href=""><img src="img/masteryi.png" alt=""><em>마스터이</em></a>
+							<a href=""><img src="img/malphite.png" alt=""><em>말파이트</em></a>
+							<a href=""><img src="img/mordekaiser.png" alt=""><em>모데카이저</em></a>
+							<a href=""><img src="img/missfortune.png" alt=""><em>미스포춘</em></a>
+							<a href=""><img src="img/vi.png" alt=""><em>바이</em></a>
+							<a href=""><img src="img/velkoz.png" alt=""><em>벨코즈</em></a>
+							
+								
+						</div>
+					</article>
+               <article class="column col6" id="scroll3">
+                        <h4 class="col_tit">제작소</h4>
+						<p class="col_desc">최근 유저들이 제작한 아이템 확률 %표입니다! 게임속 제작소에 들어가 아이템을 조합해보세요!</p>
+						<canvas id="radarChart"></canvas>
+					</article>
+               <article class="column col7" id="scroll4">
+                        <h4 class="col_tit">나만의 상점</h4>
+                        <p class="col_desc">나에게 맞는 무작위 아이템이 할인되어 나옵니다!</p>
+						<div class="lightbox square clearfix">
+							<a href="img/Ahri_0.jpg"><img src="img/myshop.jpg" alt="아리"><em>30%세일</em></a>
+							<a href="img/Anivia_0.jpg"><img src="img/myshop.jpg" alt="애니비아"><em>60%세일</em></a>
+							<a href="img/Aphelios_0.jpg"><img src="img/myshop.jpg" alt="아펠리오스"><em>50%세일</em></a>
+							<a href="img/AurelionSol_0.jpg"><img src="img/myshop.jpg" alt="아우렐리온 솔"><em>20%세일</em></a>
+							<a href="img/Azir_0.jpg"><img src="img/myshop.jpg" alt="아지르"><em>90%세일</em></a>		
+						</div>
+					</article>
+               <article class="column col8" id="scroll5">
+                        <h4 class="col_tit">201935285 송지우</h4>
+						<ul>
+						    <li>
+						        <p class="col_desc"><strong>성명: </strong>송지우</p>
+						    </li>
+						    <li>
+						        <p class="col_desc"><strong>학번: </strong>201935285</p>
+						    </li>
+						    <li>
+						        <p class="col_desc"><strong>이메일: </strong>wjddus7431@naver.com</p>
+						    </li>
+						    <li>
+						        <p class="col_desc"><strong>역할: </strong>전체 레이아웃잡기, 헤더영역, 이미지슬라이드기능,  메인-중앙 라이트박스, index2.html</p>
+						    </li>
+						</ul>
+					</article>
+               <article class="column col9" id="scroll6">
+                        <h4 class="col_tit">201935365 홍주연</h4>
+						<ul>
+						    <li>
+						        <p class="col_desc"><strong>성명: </strong>홍주연</p>
+						    </li>
+						    <li>
+						        <p class="col_desc"><strong>학번: </strong>201935365</p>
+						    </li>
+						    <li>
+						        <p class="col_desc"><strong>이메일: </strong>anm0912@naver.com</p>
+						    </li>
+						    <li>
+						        <p class="col_desc"><strong>역할: </strong>메인-왼쪽(게시판, 블로그), 메인-오른쪽(검색창, 그래프), nav메뉴 접고 펼치기, index3.html</p>
+						    </li>
+						</ul>
+					</article>
+                </section>
+                <!-- //cont_center -->
+                <section id="cont_right">
+                    <h3 class="ir_su">반응형 사이트 오른쪽 컨텐츠</h3>
+                    <article class="column col7">
+                        <h4 class="col_tit">검색!</h4>
+						<p class="col_desc">모르는 것이 있다면 검색해보세요!</p>
+						<!-- side1 -->
+						<div>
+                           <form class="search">
+                               <input type="text" class="keyword" name="search" maxlength = 255 value="" autocomplete="off">
+                               
+                               <button class="button" type="submit" name="click">
+                                   <i class="fas fa-search"></i>검색</button>
+                               
+                               <select name="WhichSearch" class="SelectSearch">
+                                   <option value="google" id="google">Google</option>
+                                   <option value="naver" id="naver">Naver</option>
+                               </select>
+                           </form>
+                        </div>
+                        <!-- side1//-->
+                    </article>
+                    <!-- //col7 -->
+                    
+                    <article class="column col8">
+                        <h4 class="col_tit">승률 모스트!</h4>
+						<p class="col_desc">마우스를 가져다 보세요!</p>
+						<!-- side2 -->
+						<div class="side2">
+                            <figure class="front">
+                                <img src="img/leagueoflegends1.jpg" alt="이미지2">
+                            </figure >
+                            <figure class="back">
+                                <canvas id="horizontalBar1"></canvas>
+                                <canvas id="horizontalBar2"></canvas>
+                                <canvas id="horizontalBar3"></canvas>
+                            </figure>
+                        </div>
+                        <!-- side2//-->
+                    </article>
+                    <!-- //col8 -->
+                </section>
+                <!-- //cont_right -->
+            </div>
+        </section>
+        <!-- //contents -->
+    </main>
+    
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer">
+                    <ul>
+                        <li><a href="index3.html#scroll1">사이트 도움말</a></li>
+                        <li><a href="index3.html#scroll2">사이트 이용약관</a></li>
+                        <li><a href="index3.html#scroll3">사이트 운영원칙</a></li>
+                        <li><a href="index3.html#scroll4"><strong>개인정보취급방침</strong></a></li>
+                        <li><a href="index3.html#scroll5">책임의 한계와 법적고지</a></li>
+                        <li><a href="index3.html#scroll6">게시중단요청서비스</a></li>
+                        <li><a href="index3.html#scroll7">고객센터</a></li>
+                    </ul>
+                    <address>
+                        Copyright &copy;
+                        <a href="https://kr.leagueoflegends.com/ko-kr/"><strong>league of legends</strong></a>
+                        is good.
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    
+    <!-- JavaScript Libraries -->
+    <script src="js/jquery.min_1.12.4.js"></script>
+    <script src="js/modernizr-custom.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/lightgallery.min.js"></script>
+    <script src="js/mb.js"></script>
+    <script src="js/custom.js"></script>
+    <script>
+        //radar
+        var ctxR = document.getElementById("radarChart").getContext('2d');
+        var myRadarChart = new Chart(ctxR, {
+        type: 'radar',
+        data: {
+        labels: ["일반 등급", "준레어 등급", "레어 등급", "준 전설급", "전설급", "초월급", "한정판"],
+        datasets: [{
+        label: "스킨 조합 결과",
+        data: [90, 70, 60, 55, 10, 5, 30],
+        backgroundColor: [
+        'rgba(105, 0, 132, .2)',
+        ],
+        borderColor: [
+        'rgba(200, 99, 132, .7)',
+        ],
+        borderWidth: 2
+        },
+        {
+        label: "캐릭터 조합 결과",
+        data: [88, 69, , 59, 30, 10, 74],
+        backgroundColor: [
+        'rgba(0, 250, 220, .2)',
+        ],
+        borderColor: [
+        'rgba(0, 213, 132, .7)',
+        ],
+        borderWidth: 2
+        }
+        ]
+        },
+        options: {
+        responsive: true
+        }
+        });
+    </script>
+</body>
+</html>
+
+
+

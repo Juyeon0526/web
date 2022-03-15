@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+    <title>We Love LOL</title>
+
+    <!-- style -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/lightgallery.css">
+    <link rel="stylesheet" href="css/custom.css">
+      <!-- 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Brush+Script" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
+
+    <style>
+        /* 레이아웃 */
+        body {background: url(img/league_of_legends_bg.jpg) repeat-x center top;}
+        #header {  }
+        #nav {background-color: #f6fdff;}
+        #title {background-color: #eaf7fd;}
+        #contents .container {border-right: 1px solid #dbdbdb; border-left: 1px solid #dbdbdb;}
+        #cont_left {float: left; width: 250px;}
+        #cont_center {
+            overflow: hidden; 
+            margin-right: 250px; 
+            min-height: 1300px; 
+            border-right: 1px solid #dbdbdb;
+            border-left: 1px solid #dbdbdb;
+        }
+        #cont_right {position: absolute; right: 0; top: 0px; width: 250px;}
+        #footer {border-top: 1px solid #dbdbdb;}    
+        
+        
+        /* mediaquery */
+        /* 화면 너비 0~1220px */
+        @media (max-width: 1220px){
+            .container {width: 100%;}
+            .row {padding: 0 15px;}
+            #cont_center {min-height: 1350px;}
+	        #contents .container {border: 0;}
+            
+            .title .btn {right: 15px;}
+            .square a {width: 24%}
+	        .square a:nth-child(5n) {display: none;}
+        }
+        
+        /* 화면 너비 0~1024px */
+        @media (max-width: 1024px){
+            .square a {width: 32.33333%}
+	        .square a:nth-child(5) {display: block;}
+        }
+        
+        /* 화면 너비 0~960px */
+        @media (max-width: 960px){
+            #cont_right {position: static; width: 100%; border-top: 1px solid #dbdbdb;}
+	        #cont_center {margin-right: 0; border-right: 0;}
+            
+            .nav > div {float: none; width: 100%;}
+            .nav > div:last-child {width: 100%;}
+            .nav > div li {width: 33.333%;}
+            .nav > div:last-child li {width: 33.333%;}
+            .nav > div ol {margin-bottom: 10px;}
+            
+            #cont_right {overflow: hidden;}
+            #cont_right .column {float: left; width: 33.333%; box-sizing: border-box;}
+            #cont_right .column.col7 {border-right: 1px solid #dbdbdb; border-bottom: 0;}
+            #cont_right .column.col8 {border-right: 1px solid #dbdbdb; border-bottom: 0;}
+        }
+        
+        /* 화면 너비 0~768px */
+        @media (max-width: 768px){
+            #cont_left {float: none; width: 100%;}
+	        #cont_center {border-left: 0;}
+        }
+        
+        /* 화면 너비 0~600px */
+        @media (max-width: 600px){
+            .header {height: auto;}
+            .nav > div li {width: 50%;}
+	        .nav > div:last-child li {width: 50%;}
+            
+            .header .header_tit {display: none;}
+            .header .header_icon {display: none;}
+            .title .btn {display: none;}
+            .column.col1 .col_tit {display: none;}
+            .column.col1 .col_desc {display: none;}
+            .column.col1 .menu li a i {display: none;}
+            .column.col1 {padding: 0; border-bottom: 0;}
+            .column.col1 .menu ul {overflow: hidden;}
+            .column.col1 .menu li {float: left; width: 33.33333%; text-align: center; border-right: 1px solid #dbdbdb; box-sizing: border-box;}
+            .column.col1 .menu li:nth-child(3n) {border-right: 0;}
+            .column.col1 .menu li a {color: #fff; text-shadow: 0 0 5px rgba(0,0,0,0.7);}
+            .column.col1 .menu li a:hover {box-shadow: none; background: rgba(36,130,174,0.3);}
+            .column.col2 {background: #fff;}
+	        .column.col4 {border-top: 1px solid #dbdbdb;}
+            
+            #cont_right .column {width:50%;}
+            #cont_right .column.col8 {border-right: 0;}
+            #cont_right .column.col9 {display: none;}
+            
+            .slider figcaption {padding: 10px;}
+            .slider figcaption em {font-size: 18px;}
+            .slider figcaption span {font-size: 14px;}
+            
+            .square a {width: 49%}
+	        .square a:nth-child(5) {display: none;}
+        }
+        
+        /* 화면 너비 0~480px */
+        @media (max-width: 480px){
+
+        }
+
+        /* 화면 너비 0~320px */
+        @media (max-width: 320px){
+            #cont_right .column {width:100%;}
+	        #cont_right .column.col7 {border-right: 0; border-bottom: 1px solid #dbdbdb;}
+            .square a {width: 100%; margin-left:0; margin-right: 0;}
+        }
+        
+        /* 줌 에니메이션 추가 */
+        .animate {
+          -webkit-animation: animatezoom 0.6s;
+          animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+          from {-webkit-transform: scale(0)} 
+          to {-webkit-transform: scale(1)}
+        }
+  
+        @keyframes animatezoom {
+          from {transform: scale(0)} 
+          to {transform: scale(1)}
+        }
+
+        /* 작은 화면에서의 범위와 취소 버튼 스타일 변경 */
+        @media screen and (max-width: 300px) {
+          span.psw {
+             display: block;
+             float: none;
+          }
+          .cancelbtn {
+             width: 100%;
+          }
+        }
+        #scroll6 button{
+            background-color: #3192bf;
+            color: #fff;
+            height: 30px;
+            width: 100px;
+            
+        }
+        #scroll3 ul li{
+            list-style: square;
+            margin-left: 10px;
+            color: #878787;
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    
+    <header id="header">
+        <div class="container">
+            <div class="row">
+                <div class="header">
+                    <div class="header_menu">
+                       <a class="login" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><strong>Login</strong></a>
+                       <div id="id01" class="modal1">
+                         <form class="modal1-content animate" action="" method="post">
+                               <div class="container1">
+                               <label for="uname"><b>Username</b></label>
+                                <input type="text" placeholder="Enter Username" name="uname" required>
+
+                                <label for="psw"><b>Password</b></label>
+                                <input type="password" placeholder="Enter Password" name="psw" required>
+        
+                                <label>
+                                <input type="checkbox" checked="checked" name="remember">Remember me
+                                </label>
+                               </div>
+
+                               <div class="container1" style="background-color:#f1f1f1">
+                                <button class="loginbtn" type="submit">Login</button>
+                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                               </div>
+                         </form>
+                        </div>
+                        <a href="https://www.youtube.com/user/riotgamesinc">Youtube</a>
+                        <a href="https://www.facebook.com/LeagueofLegendsKor">facebook</a>
+                        <a href="https://kr.leagueoflegends.com/ko-kr/">Website</a>
+                    </div>
+                    <!-- //header_menu -->
+                    <div class="header_tit">
+                        <h1>League of Legend</h1><br>
+                        <a href="index.html">We Love LOL</a>
+                    </div>
+                    <!-- //header_tit -->
+                    <div class="header_icon">
+                        <ul>
+                            <li><a href="#" id="myBtn"><i class="fa fa-star" aria-hidden="true"></i><span>bookmark</span></a></li>
+                            <div id="myModal" class="modal">
+                            <!-- Modal content -->
+                              <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>우측 상단 별표시를 눌러 북마크를 설정하세요!</p>
+                              </div>
+
+                            </div>
+                            <li><a href="#" class="facebook"><i class="fa fa-facebook-square" aria-hidden="true"></i><span>Fackbook</span></a></li>
+                            <li><a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i><span>twitter</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- //header_icon -->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- //nav -->
+    
+    <nav id="nav">
+		<div class="container">
+			<div class="row">
+				<div class="nav">
+					<h2 class="ir_su">전체 메뉴</h2>
+					<div>
+			            <h3>사이트 메뉴</h3>
+			            <ol>
+			                <li><a href="index2.html#scroll1">내정보</a></li>
+			                <li><a href="index2.html#scroll2">컬랙션</a></li>
+			                <li><a href="index2.html#scroll3">제작소</a></li>
+			                <li><a href="index2.html#scroll4">나만의 상점</a></li>
+			                <li><a href="index2.html#scroll5">201935285 송지우</a></li>
+			                <li><a href="index2.html#scroll6">201935365 홍주연</a></li>
+			                <li><a href="index3.html#scroll1">사이트 도움말</a></li>
+			                <li><a href="index3.html#scroll2">사이트 이용약관</a></li>
+			                <li><a href="index3.html#scroll3">사이트 운영원칙</a></li>
+			                <li><a href="index3.html#scroll4">개인정보 취급방침</a></li>
+			                <li><a href="index3.html#scroll5">책임의 한계와 법적 고지</a></li>
+			                <li><a href="index3.html#scroll6">개시중단요청서비스</a></li>
+			                <li><a href="index3.html#scroll7">고객센터</a></li>
+			            </ol>
+			        </div>
+			        <div>
+			            <h3>커뮤니티 사이트</h3>
+			            <ol>
+			                <li><a href="https://trees.gamemeca.com/leagueoflegends/">게임메카 접속</a></li>
+			                <li><a href="https://www.thisisgame.com/lol/">디즈이즈게임 접속</a></li>
+			                <li><a href="http://lol.inven.co.kr/">인벤 접속</a></li>
+			                <li><a href="http://www.hungryapp.co.kr/bbs/list.php?bcode=leagueoflegends">헝그리앱 접속</a></li>
+			                <li><a href="https://www.facebook.com/LeagueofLegendsKor">공식 페이스북 사이트 접속</a></li>
+			                <li><a href="https://www.youtube.com/user/riotgamesinc">공식 유튜브 채널 접속</a></li>
+			                <li><a href="https://kr.leagueoflegends.com/ko-kr/">공식 사이트 접속</a></li>			                
+			            </ol>
+			        </div>
+			        <div>
+			            <h3>전적 검색 사이트</h3>
+			            <ol>
+			                <li><a href="https://www.op.gg/">OP.GG 접속</a></li>
+			                <li><a href="http://fow.kr/">Fow.kr 접속</a></li>
+			                <li><a href="https://poro.gg/">PORO.GG 접속</a></li>
+			                <li><a href="https://lolchess.gg/">롤체.GG 접속</a></li>
+			            </ol>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<!-- //nav -->
+   
+    <article id="title">
+		<div class="container">
+			<div class="title">
+				<h2>"League of Legends"</h2>
+				<a href="#" class="btn"><i class="fa fa-angle-down" aria-hidden="true"></i><span class="ir_su">전체메뉴 보기</span></a>
+			</div>
+		</div>
+	</article>
+	<!-- //title -->
+   
+    <main>
+        <section id="contents">
+            <div class="container">
+				<h2 class="ir_su">반응형 사이트 컨텐츠</h2>
+                <section id="cont_left">
+                    <h3 class="ir_su">메뉴 및 게시판 컨텐츠 영역</h3>
+                    <article class="column col1">
+                        <h4 class="col_tit">메뉴</h4>
+						<!-- 메뉴 -->
+						<div class="menu">
+							<ul>
+								<li><a href="./index2.html#scroll1">내정보 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll2">컬랙션 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll3">제작소 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll4">나만의 상점 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll5">201935285 송지우 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+								<li><a href="./index2.html#scroll6">201935300 홍주연 <i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+						<!--//메뉴 -->
+                    </article>
+                    <!-- //col1 -->
+                    
+                    <article class="column col2">
+						<h4 class="col_tit">새소식</h4>
+						<!-- 게시판 -->
+						<div class="notice1">
+							<h5>개발자 블로그</h5>
+							<ul>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/champion-roadmap-june-2020/">2020년 6월 챔피언 업데이트 현황</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/dev-updates-on-2020-ranked-matchmaking/">[개발 인사이드] 2020 랭크 게임 및 대전 검색에 대한 소식</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/quick-gameplay-thoughts-may-29/">2020년 5월 게임플레이에 대한 단상 -4</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/dev/tft-dev-drop-galaxies-mid-set-update/">전략적 팀 전투 개발 소식: 갤럭시 세트 중반 업데이트</a></li>
+							</ul>
+						</div>
+						<!--//게시판 -->
+						<!-- 게시판2 -->
+						<div class="notice2 mt15">
+							<h5>게임 업데이트</h5>
+							<ul>
+								<li><a href="https://www.youtube.com/watch?v=mbd2eN94caw">전략적 팀 전투 갤럭시 세트 중반 안내</a></li>
+								<li><a href="https://www.youtube.com/watch?v=vHMdPEHFEtM">전략적 팀 전투: 갤럭시 세트 중반 업데이트 티저</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/game-updates/10-11-store/">10.11 패치 상점 소식</a></li>
+								<li><a href="https://kr.leagueoflegends.com/ko-kr/news/game-updates/patch-10-11-notes/">[#2] 10.11 패치노트 (수정)</a></li>
+							</ul>
+						</div>
+						<!--//게시판2 -->
+					</article>
+					<!-- //col2 -->
+                    
+                    <article class="column col3">
+                        <h4 class="col_tit">블로그</h4>
+						<p class="col_desc">이미지를 클릭해 공략법을 알아보세요!</p>
+						<!-- side3 -->
+						<div class="side3">
+                            <figure>
+                                <img src="img/lucian.jpg" alt="이미지3">
+                                <a href="https://blog.naver.com/poalqr04/221318635739"><figcaption>
+                                    <h3>How to<em>Play LOL</em></h3>
+                                </figcaption></a>
+                            </figure>
+                        </div>
+                        <!-- side3//-->
+                    </article>
+					<!-- //col3 -->
+                </section>
+                <!-- //cont_left -->
+                
+                <section id="cont_center">
+                    <article class="column col4" id="scroll1">
+                        <h4 class="col_tit">사이트 도움말</h4>
+						<p class="col_desc">We love LOL은 웹프로그래밍 기말 프로젝트 사이트 입니다. 이 사이트는 부트스트랩 템플릿을 사용하지 않고 레이아웃을 모두 손수 하나하나 코딩한 사이트이며 html, css, js코드의 무단복제를 허용하지 않습니다.</p>
+					</article>
+               <article class="column col4" id="scroll2">
+                        <h4 class="col_tit">사이트 이용약관</h4>
+						<p class="col_desc">본 약관은 We Love LOL가 제공하는 모든 서비스(이하 "서비스")의 이용조건 및 절차, 이용자와 당 사이트의 권리, 의무, 책임사항과 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+						<p class="col_desc">제 1조: 규정사항과 기타 필요한 사항은 없습니다. 본사이트를 즐겁게 즐겨주세요!</p>
+					</article>
+               <article class="column col4" id="scroll3">
+                        <h4 class="col_tit">사이트 운영원칙</h4>
+						<ul>
+						    <li>
+						        <p>명예회손 게시물 게재 금지</p>
+						    </li>
+						    <li>
+						        <p>불법성 및 음란성, 청소년 노출 부적합 게시물 게재 금지</p>
+						    </li>
+						    <li>
+						        <p>사행성 조장 및 상업 게시물 게재 금지</p>
+						    </li>
+						    <li>
+						        <p>저작권을 침해하는 게시물 게재 금지</p>
+						    </li>
+						</ul>
+					</article>
+               <article class="column col4" id="scroll4">
+                        <h4 class="col_tit">개인정보취급방침</h4>
+						<p class="col_desc">계정이나 로그인 자격증명을 공유하거나 판매할 수 있나요? (아니오.) 귀하가 We love LOL 계정을 생성할 때, We love LOL은 귀하에게 고유의 아이디와 비밀번호(총칭하여 귀하의 “로그인 자격증명”)를 선택하도록 요구합니다. 귀하는 다음에 동의합니다:  •  귀하는 귀하의 계정 또는 로그인 자격증명을 그 누구와도 공유할 수 없습니다.  •  귀하는 타인에게 귀하의 계정 또는 로그인 자격증명을 판매하거나, 양도하거나, 이에 대한 타인의 접속을 허용하거나, 이를 제안할 수 없습니다.  •  귀하는 귀하의 로그인 자격증명을 기밀로 유지하여야 합니다. 귀하의 계정에 대한 무단 액세스 또는 귀하의 로그인 자격증명의 분실, 도난, 무단 이용, 공개 등의 보안 침해에 대해 알게 되는 경우 We love LOL가 적절한 조치를 취할 수 있도록 즉시 알려주시기 바랍니다. 귀하는 귀하의 로그인 자격증명을 공유하거나 귀하의 계정이나 로그인 자격증명의 보안 유지에 실패하여 귀하의 계정에 초래되는 손실(가상 콘텐츠의 손실 또는 이용 등 포함)에 대해 전적인 책임을 부담합니다.</p>
+					</article>
+               <article class="column col4" id="scroll5">
+                        <h4 class="col_tit">책임의 한계와 법적고지</h4>
+						<p class="col_desc">본 사이트에서 회원이 게시하는 자료 중에는 회원의 개인적인 판단에 따라 불쾌감 또는 피해를 주는 내용이 있을 수도 있습니다. 회원이 게시하는 자료 가운데 불법 내지는 선량한 풍속 기타 사회질서에 반하는 내용에 대하여 회사는 어떠한 책임도 지지 않으며, 사이트 내에서 회원이 게시하는 여하한 정보 및 이와 관련된 광고, 기타 정보 또는 제안의 결과로서 취득하게 되는 어떠한 재화와 용역에 대하여도 그것의 가치, 용도, 광고 및 기타 관계법령 준수 등에 대한 일체의 보증을 하지 않습니다.</p>
+					</article>
+               <article class="column col4" id="scroll6">
+                        <h4 class="col_tit">게시중단요청서비스</h4>
+						<p class="col_desc">게시중단요청 서비스란? We Love LOL 서비스 상에서 다른 회원의 게시물이 고객님의 권리를 침해한다고 생각되는 경우에 그 게시물을 임시로 게재 중단해줄 것을 요청하실 수 있는 서비스입니다.</p>
+                       <button>게시중단요청</button>
+					</article>
+               <article class="column col4" id="scroll7">
+                        <h4 class="col_tit">고객센터</h4>
+						<p class="col_desc">10:00AM~13:00PM tel: 010-6352-7265</p>
+					</article>
+                </section>
+                <!-- //cont_center -->
+                <section id="cont_right">
+                    <h3 class="ir_su">반응형 사이트 오른쪽 컨텐츠</h3>
+                    <article class="column col7">
+                        <h4 class="col_tit">검색!</h4>
+						<p class="col_desc">모르는 것이 있다면 검색해보세요!</p>
+						<!-- side1 -->
+						<div>
+                           <form class="search">
+                               <input type="text" class="keyword" name="search" maxlength = 255 value="" autocomplete="off">
+                               
+                               <button class="button" type="submit" name="click">
+                                   <i class="fas fa-search"></i>검색</button>
+                                   
+                               <select name="WhichSearch" class="SelectSearch">
+                                   <option value="google" id="google">Google</option>
+                                   <option value="naver" id="naver">Naver</option>
+                               </select>
+                           </form>
+                        </div>
+                        <!-- side1//-->
+                    </article>
+                    <!-- //col7 -->
+                    
+                    <article class="column col8">
+                        <h4 class="col_tit">승률 모스트!</h4>
+						<p class="col_desc">마우스를 가져다 보세요!</p>
+						<!-- side2 -->
+						<div class="side2">
+                            <figure class="front">
+                                <img src="img/leagueoflegends1.jpg" alt="이미지2">
+                            </figure >
+                            <figure class="back">
+                                <canvas id="horizontalBar1"></canvas>
+                                <canvas id="horizontalBar2"></canvas>
+                                <canvas id="horizontalBar3"></canvas>
+                            </figure>
+                        </div>
+                        <!-- side2//-->
+                    </article>
+                    <!-- //col8 -->
+                </section>
+                <!-- //cont_right -->
+            </div>
+        </section>
+        <!-- //contents -->
+    </main>
+    
+    <footer id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer">
+                    <ul>
+                        <li><a href="index3.html#scroll1">사이트 도움말</a></li>
+                        <li><a href="index3.html#scroll2">사이트 이용약관</a></li>
+                        <li><a href="index3.html#scroll3">사이트 운영원칙</a></li>
+                        <li><a href="index3.html#scroll4"><strong>개인정보취급방침</strong></a></li>
+                        <li><a href="index3.html#scroll5">책임의 한계와 법적고지</a></li>
+                        <li><a href="index3.html#scroll6">게시중단요청서비스</a></li>
+                        <li><a href="index3.html#scroll7">고객센터</a></li>
+                    </ul>
+                    <address>
+                        Copyright &copy;
+                        <a href="https://kr.leagueoflegends.com/ko-kr/"><strong>league of legends</strong></a>
+                        is good.
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- //footer -->
+    
+    <!-- JavaScript Libraries -->
+    <script src="js/jquery.min_1.12.4.js"></script>
+    <script src="js/modernizr-custom.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/lightgallery.min.js"></script>
+    <script src="js/mb.js"></script>
+    <script>
+        new Chart(document.getElementById("horizontalBar1"), {
+        "type": "horizontalBar",
+        "data": {
+        "labels": ["탐켄치", "신지드", "초가스", "마오카이"],
+        "datasets": [{
+        "label": "탑",
+        "data": [55.8, 55.1, 54.9, 54.6],
+        "fill": false,
+        "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+        "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)"
+        ],
+        "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+        "rgb(75, 192, 192)"
+        ],
+        "borderWidth": 1
+        }]
+        },
+        "options": {
+        "scales": {
+        "xAxes": [{
+        "ticks": {
+        "beginAtZero": true
+        }
+        }]
+        }
+        }
+        });
+        
+        new Chart(document.getElementById("horizontalBar2"), {
+        "type": "horizontalBar",
+        "data": {
+        "labels": ["바이", "람머스", "아무무", "볼리베어"],
+        "datasets": [{
+        "label": "정글",
+        "data": [54.4, 53.4, 52.8, 52.4],
+        "fill": false,
+        "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+        "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)"
+        ],
+        "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+        "rgb(75, 192, 192)"
+        ],
+        "borderWidth": 1
+        }]
+        },
+        "options": {
+        "scales": {
+        "xAxes": [{
+        "ticks": {
+        "beginAtZero": true
+        }
+        }]
+        }
+        }
+        });
+        
+        new Chart(document.getElementById("horizontalBar3"), {
+        "type": "horizontalBar",
+        "data": {
+        "labels": ["질리언", "애니", "갈리오", "아트록스"],
+        "datasets": [{
+        "label": "미드",
+        "data": [55.1, 54.3, 53.7, 53.4],
+        "fill": false,
+        "backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+        "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)"
+        ],
+        "borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)",
+        "rgb(75, 192, 192)"
+        ],
+        "borderWidth": 1
+        }]
+        },
+        "options": {
+        "scales": {
+        "xAxes": [{
+        "ticks": {
+        "beginAtZero": true
+        }
+        }]
+        }
+        }
+        });
+        //접기/펼치기
+        $(".btn").click(function(e){
+            e.preventDefault();
+            $(".nav").slideToggle();
+            $(".btn").toggleClass("open");
+            //var btn = $(".btn").find(">i").attr("class");
+            //alert(btn);
+
+            if($(".btn").hasClass("open")){
+                //open이 있을 때
+                $(".btn").find(">i").attr("class","fa fa-angle-up");
+            } else {
+                //open이 없을 때
+                $(".btn").find(">i").attr("class","fa fa-angle-down");
+            }
+        });
+        
+        $(window).resize(function(){
+            var wWidth = $(window).width();
+            if(wWidth > 600){
+                $(".nav").removeAttr("style");
+            }
+        });
+        
+        
+        //sns 공유하기
+        $(".facebook").click(function(e){
+            e.preventDefault();
+            window.open('https://www.facebook.com/sharer/sharer.php?u=' +encodeURIComponent(document.URL)+'&t='+encodeURIComponent(document.title), 'facebooksharedialog', 'menubar=no, toolbar=no, resizable=yes, scrollbars=yes, height=300, width=600'); 
+        });
+        $(".twitter").click(function(e){
+            e.preventDefault();
+            window.open('https://twitter.com/intent/tweet?text=[%EA%B3%B5%EC%9C%A0]%20' +encodeURIComponent(document.URL)+'%20-%20'+encodeURIComponent(document.title), 'twittersharedialog', 'menubar=no, toolbar=no, resizable=yes, scrollbars=yes, height=300, width=600');
+        });
+        
+         //검색엔진
+        const Searching = Search.prototype;
+        
+        function Search() {
+            this.keyword = document.querySelector('input[name = "search"]');
+            this.engine = document.querySelector('.SelectSearch');
+            this.button = document.querySelector('.button');
+            this.form = document.querySelector('.search');
+            
+            this.Engine();
+        }
+        Searching.Engine = function(){
+            this.form.addEventListener('submit', e => {
+                
+                e.preventDefault();
+                
+                let engine = this.engine.value;
+                let keyword = this.keyword.value;
+                
+                if(engine === 'google') {
+                    location.href = 'https://www.google.co.kr/search?q=' + keyword;
+                }else if(engine === 'naver'){
+                    location.href = 'https://search.naver.com/search.naver?query=' + keyword;
+                }
+            });
+        }
+        new Search();
+        
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+    </script>
+</body>
+</html>
